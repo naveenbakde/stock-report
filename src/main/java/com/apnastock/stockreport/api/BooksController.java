@@ -1,7 +1,5 @@
 package com.apnastock.stockreport.api;
 
-import java.util.List;
-
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,7 +26,7 @@ public class BooksController {
 	}
 	
 	@GetMapping("findBooks")
-	public ResponseEntity<List<String>> findBooks() {
+	public ResponseEntity<Boolean> findBooks() {
 		log.info("---------------Find Books service called------------");
 		return ResponseEntity.ok(booksService.getBooks());
 	}

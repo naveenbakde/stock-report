@@ -5,13 +5,24 @@ import java.util.List;
 @FunctionalInterface
 public interface Processor<T> {
 
-	default void preProcess(T t) {}
-	default void preProcess(List<T> t) {}
+	default void preProcess(T t) {
+	}
 
-	void process(T t);
-	default void process(List<T> t) {}
+	default void preProcess(List<T> t) {
+	}
 
-	default void postProcess(List<T> t) {}
-	default void postProcess(T t) {}
+	Boolean process(T t);
+
+	default Boolean process(List<T> t) {
+		return Boolean.TRUE;
+	}
+
+	default Boolean postProcess(List<T> t) {
+		return Boolean.TRUE;
+	}
+
+	default Boolean postProcess(T t) {
+		return Boolean.TRUE;
+	}
 
 }

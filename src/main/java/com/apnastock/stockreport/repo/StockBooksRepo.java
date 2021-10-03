@@ -25,7 +25,7 @@ public class StockBooksRepo {
 	private final JdbcTemplate jdbcTemplate;
 	private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 	
-	public List<String> queryListOfBooks(Processor<String> processor) {
+	public Boolean queryListOfBooks(Processor<String> processor) {
 		processor.preProcess(getHeaders());
 		log.info("Repo executing -------");
 		namedParameterJdbcTemplate.queryForStream("select bookId as bookId, bookName as bookName from books", Collections.emptyMap(), new RowMapper<String>() {
@@ -37,7 +37,7 @@ public class StockBooksRepo {
 			}
 		}).forEach(row -> processor.process(row));
 		
-		return Collections.emptyList();
+		return processor.process("");
 	}
 	
 	public List<String> getHeaders() {

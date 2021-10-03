@@ -22,17 +22,22 @@ public class BooksService {
 		repository.initData();
 	}
 
-	public List<String> getBooks() {
-
+	public Boolean getBooks() {
 		return repository.queryListOfBooks(new ExcelProcessorImpl() {
 			private List<String> books = new ArrayList<String>();
-			
+
 			@Override
-			public void process(String book) {
-				books.add(book);
-				if (books.size() > 500)
-					postProcess(books);
+			public Boolean process(String book) {
+				if (book != null && !book.equals("")) {
+					books.add(book);
+					if (books.size() > 500)
+						return postProcess(books);
+					else 
+						return true;
+				} 
+				return postProcess(books);
 			}
+
 		});
 	}
 

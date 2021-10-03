@@ -31,7 +31,7 @@ public abstract class ExcelProcessorImpl implements Processor<String> {
 	}
 
 	@Override
-	public void postProcess(List<String> books) {
+	public Boolean postProcess(List<String> books) {
 		try (FileOutputStream fileout = new FileOutputStream(FILE_NAME)) {
 			Sheet sheet = workbook.createSheet();
 			Row headerRow = sheet.createRow(0);
@@ -51,5 +51,6 @@ public abstract class ExcelProcessorImpl implements Processor<String> {
 		}
 		log.info("processing book------> {} ", count++);
 		books.clear();
+		return true;
 	}
 }
