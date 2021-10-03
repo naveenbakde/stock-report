@@ -1,0 +1,1 @@
+create table books (bookId INTEGER PRIMARY KEY, bookName varchar(100))
